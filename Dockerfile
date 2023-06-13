@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-RUN pip install Flask
-
 RUN pip3 install -r requirements.txt
 
 COPY . .
