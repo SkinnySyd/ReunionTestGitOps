@@ -1,10 +1,12 @@
-FROM python
+FROM python:3.9.2
 
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
-RUN pip3 install pandas
-RUN pip3 install Flask
+
+RUN pip install Flask
+
+RUN pip3 install -r requirements.txt
 
 COPY . .
 
