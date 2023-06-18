@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("skinnysyddocker/pylocaltest")
+       app = docker.build("skinnysydcontainersregistry.azurecr.io/pylocaltest")
     }
 
     stage('Test image') {
@@ -22,7 +22,7 @@ node {
 
     stage('Push image') {
         
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        docker.withRegistry('https://skinnysydcontainersregistry.azurecr.io', 'azurecr') {
             app.push("${env.BUILD_NUMBER}")
         }
     }
