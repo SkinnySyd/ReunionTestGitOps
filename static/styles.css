@@ -46,3 +46,22 @@ a {
 a:hover {
     text-decoration: underline;
 }
+.data-table {
+    margin-top: 20px;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.styled-table th, .styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+}
