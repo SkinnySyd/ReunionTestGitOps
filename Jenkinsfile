@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("skinnysydcontainersregistry.azurecr.io/pylocaltest")
+       app = docker.build("skinnysydcontainersregistry.azurecr.io/pylocaltestpfe")
     }
 
     stage('Test image') {
