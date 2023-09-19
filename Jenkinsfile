@@ -5,9 +5,9 @@ node {
         stage('Clone repository') {
             steps {
                 // Checkout the 'Dev' branch from your GitHub repository
-                checkout([$class: 'GitSCM',
+                checkout scmGit(
                     branches: [[name: 'Dev']],
-                    userRemoteConfigs: [[url: 'https://github.com/SkinnySyd/ReunionTestGitOps.git']]])
+                    userRemoteConfigs: [[url: 'https://github.com/SkinnySyd/ReunionTestGitOps.git']])
             }
         }
 
