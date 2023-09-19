@@ -1,10 +1,17 @@
 node {
     def app
 
-    stage('Clone repository') {
-      
+    stages {
+        stage('Clone repository') {
+            steps {
+                // Checkout the 'Dev' branch from your GitHub repository
+                checkout([$class: 'GitSCM',
+                    branches: [[name: 'Dev']],
+                    userRemoteConfigs: [[url: 'https://github.com/SkinnySyd/ReunionTestGitOps.git']]])
+            }
+        }
 
-        checkout scm
+        // Add other stages as needed for your pipeline
     }
 
     stage('Build image') {
