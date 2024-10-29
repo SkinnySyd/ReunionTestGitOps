@@ -3,6 +3,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    print("hello world")
-    return render_template('home.html')
+    return '<h1>Hello from Flask & Docker</h2>'
 
