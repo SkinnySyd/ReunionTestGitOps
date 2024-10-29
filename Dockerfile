@@ -28,4 +28,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "hello:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
