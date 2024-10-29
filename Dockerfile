@@ -1,13 +1,31 @@
-FROM python:3.9-slim-buster
+ARG PYTHON_VERSION=3.11.6
+FROM python:${PYTHON_VERSION}-slim as base
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
 
-RUN pip3 install -r requirements.txt
+# Install the dependencies
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
+
+USER appuser
 
 COPY . .
 
-ENV FLASK_APP=app.py
+EXPOSE 8000
 
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Run the application using Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "hello:app"]
